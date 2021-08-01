@@ -100,3 +100,47 @@ func TestInvert3x3(t *testing.T) {
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string with the values reverted")
 }
+
+// Flatten test
+func TestFlatten1x1(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1"})
+
+	expected := []string{"1"}
+
+	result, _ := manipulation.Flatten(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 1x1 and return a slices with all the numbers in the same order")
+}
+func TestFlatten3x3(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "2", "3"})
+	matrix = append(matrix, []string{"4", "5", "6"})
+	matrix = append(matrix, []string{"7", "8", "9"})
+
+	expected := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+	result, _ := manipulation.Flatten(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 3x3 and return a slices with all the numbers in the same order")
+}
+
+func TestFlatten4x4(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "2", "3", "4"})
+	matrix = append(matrix, []string{"5", "6", "7", "8"})
+	matrix = append(matrix, []string{"9", "10", "11", "12"})
+	matrix = append(matrix, []string{"13", "14", "15", "16"})
+
+	expected := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"}
+
+	result, _ := manipulation.Flatten(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 4x4 and return a slices with all the numbers in the same order")
+}

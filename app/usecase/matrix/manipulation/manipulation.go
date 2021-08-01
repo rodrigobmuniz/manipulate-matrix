@@ -23,3 +23,14 @@ func Invert(matrix [][]string) ([][]string, error) {
 	}
 	return invertMatrix, nil
 }
+
+func Flatten(matrix [][]string) ([]string, error) {
+	var flattedMatrix []string
+
+	for key, _ := range matrix {
+		flattedMatrix = append(flattedMatrix, matrix[key]...)
+	}
+
+	return flattedMatrix, nil
+
+}
