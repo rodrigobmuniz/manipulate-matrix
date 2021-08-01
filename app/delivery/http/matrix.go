@@ -19,6 +19,6 @@ func Echo(res http.ResponseWriter, req *http.Request) {
 		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
 		return
 	}
-	response, _ := manipulation.PassAlong(records)
+	response, _ := manipulation.Stringify(records)
 	fmt.Fprint(res, response)
 }
