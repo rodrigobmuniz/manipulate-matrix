@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"log"
-	"manipulate-matrix/delivery/http"
+	matrix "manipulate-matrix/app/delivery/http"
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/echo", delivery.Echo)
+	http.HandleFunc("/echo", matrix.Echo)
 	startServe()
 }
 
