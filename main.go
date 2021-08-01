@@ -1,39 +1,20 @@
 package main
 
 import (
-	"encoding/csv"
 	"fmt"
+	"log"
+	"manipulate-matrix/delivery/http"
 	"net/http"
-	"strings"
 )
 
 func main() {
-	http.HandleFunc("/echo", func(res http.ResponseWriter, req *http.Request) {
-		fmt.Println(req)
-		file, _, err := req.FormFile("file")
+	http.HandleFunc("/echo", delivery.Echo)
+	startServe()
+}
 
-		if err != nil {
-			res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-			return
-		}
-
-		fmt.Println(file)
-
-		if err != nil {
-			res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-			return
-		}
-		defer file.Close()
-		records, err := csv.NewReader(file).ReadAll()
-		if err != nil {
-			res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-			return
-		}
-		var response string
-		for _, row := range records {
-			response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
-		}
-		fmt.Fprint(res, response)
-	})
-	http.ListenAndServe(":8080", nil)
+func startServe() {
+	fmt.Printf("Starting server at localhost:8080\n")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}
 }
