@@ -8,3 +8,7 @@ README.md
 #Ignoring dockerfiles
 Dockerfile
 docker-compose.yml
+
+# test result files
+coverage.html
+c.out
