@@ -24,18 +24,18 @@ func Invert(matrix [][]string) [][]string {
 	return invertMatrix
 }
 
-func Flatten(matrix [][]string) ([]string, error) {
+func Flatten(matrix [][]string) []string {
 	var flattedMatrix []string
 	for key := range matrix {
 		flattedMatrix = append(flattedMatrix, matrix[key]...)
 	}
-	return flattedMatrix, nil
+	return flattedMatrix
 }
 
 func Sum(matrix [][]string) (int, error) {
 	var flattedMatrix []string
 	total := 0
-	flattedMatrix, _ = Flatten(matrix)
+	flattedMatrix = Flatten(matrix)
 	for _, value := range flattedMatrix {
 		valueToInt, _ := strconv.Atoi(value)
 		total += valueToInt
@@ -46,7 +46,7 @@ func Sum(matrix [][]string) (int, error) {
 func Multiply(matrix [][]string) (int, error) {
 	var flattedMatrix []string
 	total := 0
-	flattedMatrix, _ = Flatten(matrix)
+	flattedMatrix = Flatten(matrix)
 	for key, value := range flattedMatrix {
 		valueToInt, _ := strconv.Atoi(value)
 		if key == 0 {

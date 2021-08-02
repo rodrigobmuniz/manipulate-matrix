@@ -53,7 +53,7 @@ func Flatten(res http.ResponseWriter, req *http.Request) {
 		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
 		return
 	}
-	flatedMatrix, _ := manipulation.Flatten(records)
+	flatedMatrix := manipulation.Flatten(records)
 	var flatedMatrixAsString string
 	flatedMatrixAsString = fmt.Sprintf("%s%s\n", flatedMatrixAsString, strings.Join(flatedMatrix, ","))
 	fmt.Fprint(res, flatedMatrixAsString)
