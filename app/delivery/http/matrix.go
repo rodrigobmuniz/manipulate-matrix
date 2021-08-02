@@ -31,22 +31,27 @@ func ProcessMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipul
 	fmt.Fprint(res, funcResult)
 }
 
+// Handles requests to the endpoint /echo, returning the matrix as a string in matrix format
 func Echo(res http.ResponseWriter, req *http.Request) {
 	ProcessMatrixRequest(res, req, manipulation.Stringify)
 }
 
+// Handles requests to the endpoint /invert, returning the matrix as a string in matrix format where the columns and rows are inverted
 func Invert(res http.ResponseWriter, req *http.Request) {
 	ProcessMatrixRequest(res, req, manipulation.Invert)
 }
 
+// Handles requests to the endpoint /flatten, returning the matrix as a 1 line string, with values separated by commas
 func Flatten(res http.ResponseWriter, req *http.Request) {
 	ProcessMatrixRequest(res, req, manipulation.Flatten)
 }
 
+// Handles requests to the endpoint /sum, returning the sum of the integers in the matrix
 func Sum(res http.ResponseWriter, req *http.Request) {
 	ProcessMatrixRequest(res, req, manipulation.Sum)
 }
 
+// Handles requests to the endpoint /multiply, returning the product of the integers in the matrix
 func Multiply(res http.ResponseWriter, req *http.Request) {
 	ProcessMatrixRequest(res, req, manipulation.Multiply)
 }
