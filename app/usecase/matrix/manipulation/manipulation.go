@@ -87,3 +87,13 @@ func AllValuesAreConvertibleToInt(matrix [][]string) (bool, error) {
 	}
 	return true, nil
 }
+
+func TheMatrixIsSquare(matrix [][]string) (bool, error) {
+	totalCols := len(matrix)
+	for _, row := range matrix {
+		if len(row) != totalCols {
+			return false, errors.New("matrix received is not square")
+		}
+	}
+	return true, nil
+}

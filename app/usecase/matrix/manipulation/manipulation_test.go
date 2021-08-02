@@ -277,3 +277,92 @@ func TestAllValuesAreConvertibleToIntReturningFalse(t *testing.T) {
 	assert.Equal(expected, result, "should take an matrix and return false if any item are not convertible to int")
 	assert.Equal(true, hasError, "should have generated an Error with a message about the problem")
 }
+
+func TestTheMatrixIsSquare1x1(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(true, result, "should return true if matrix is square")
+	assert.Equal(false, hasError, "should not have generated an Error")
+}
+
+func TestTheMatrixIsSquare3x3(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+	matrix = append(matrix, []string{"5", "30", "2"})
+	matrix = append(matrix, []string{"1", "3", "2"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(true, result, "should return true if matrix is square")
+	assert.Equal(false, hasError, "should not have generated an Error")
+}
+
+func TestTheMatrixIsSquare5x5(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10", "2", "4"})
+	matrix = append(matrix, []string{"5", "30", "2", "1", "90"})
+	matrix = append(matrix, []string{"1", "3", "2", "1", "3"})
+	matrix = append(matrix, []string{"5", "30", "2", "1", "90"})
+	matrix = append(matrix, []string{"1", "3", "2", "1", "3"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(true, result, "should return true if matrix is square")
+	assert.Equal(false, hasError, "should not have generated an Error")
+}
+
+func TestTheMatrixIsSquare3x3WithError(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+	matrix = append(matrix, []string{"5", "2"})
+	matrix = append(matrix, []string{"1", "3", "2"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(false, result, "should return true if matrix is square")
+	assert.Equal(true, hasError, "should have generated an Error")
+}
+
+func TestTheMatrixIsSquare1x3WithError(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(false, result, "should return true if matrix is square")
+	assert.Equal(true, hasError, "should have generated an Error")
+}
+
+func TestTheMatrixIsSquare4x2WithError(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20"})
+	matrix = append(matrix, []string{"1", "20"})
+	matrix = append(matrix, []string{"3", "3"})
+	matrix = append(matrix, []string{"-1", "2"})
+
+	result, err := manipulation.TheMatrixIsSquare(matrix)
+	hasError := err != nil
+
+	assert.Equal(false, result, "should return true if matrix is square")
+	assert.Equal(true, hasError, "should have generated an Error")
+}
