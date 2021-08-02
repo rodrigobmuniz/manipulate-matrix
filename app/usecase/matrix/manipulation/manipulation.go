@@ -14,14 +14,14 @@ func Stringify(matrix [][]string) string {
 	return response
 }
 
-func Invert(matrix [][]string) ([][]string, error) {
+func Invert(matrix [][]string) [][]string {
 	invertMatrix := make([][]string, len(matrix))
 	for i := 0; i < len(matrix); i++ {
 		for j := 0; j < len(matrix[0]); j++ {
 			invertMatrix[j] = append(invertMatrix[j], matrix[i][j])
 		}
 	}
-	return invertMatrix, nil
+	return invertMatrix
 }
 
 func Flatten(matrix [][]string) ([]string, error) {

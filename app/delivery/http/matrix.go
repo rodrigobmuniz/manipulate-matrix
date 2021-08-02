@@ -36,7 +36,7 @@ func Invert(res http.ResponseWriter, req *http.Request) {
 		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
 		return
 	}
-	invertedMatrix, _ := manipulation.Invert(records)
+	invertedMatrix := manipulation.Invert(records)
 	invertedMatrixAsString := manipulation.Stringify(invertedMatrix)
 	fmt.Fprint(res, invertedMatrixAsString)
 }

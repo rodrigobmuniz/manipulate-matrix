@@ -62,7 +62,7 @@ func TestInvert1x1Matrix(t *testing.T) {
 
 	var expected [][]string
 	expected = append(expected, []string{"1"})
-	result, _ := manipulation.Invert(matrix)
+	result := manipulation.Invert(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string with the values reverted")
 }
@@ -78,7 +78,7 @@ func TestInvert2x2Matrix(t *testing.T) {
 	expected = append(expected, []string{"1", "3"})
 	expected = append(expected, []string{"2", "4"})
 
-	result, _ := manipulation.Invert(matrix)
+	result := manipulation.Invert(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 2x2 and return a string with the values reverted")
 }
@@ -96,7 +96,7 @@ func TestInvert3x3Matrix(t *testing.T) {
 	expected = append(expected, []string{"2", "5", "8"})
 	expected = append(expected, []string{"3", "6", "9"})
 
-	result, _ := manipulation.Invert(matrix)
+	result := manipulation.Invert(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string with the values reverted")
 }
