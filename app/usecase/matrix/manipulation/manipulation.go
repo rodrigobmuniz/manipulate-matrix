@@ -2,6 +2,7 @@ package manipulation
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -26,11 +27,35 @@ func Invert(matrix [][]string) ([][]string, error) {
 
 func Flatten(matrix [][]string) ([]string, error) {
 	var flattedMatrix []string
-
 	for key, _ := range matrix {
 		flattedMatrix = append(flattedMatrix, matrix[key]...)
 	}
-
 	return flattedMatrix, nil
+}
 
+func Sum(matrix [][]string) (int, error) {
+	var flattedMatrix []string
+	total := 0
+	flattedMatrix, _ = Flatten(matrix)
+	for _, value := range flattedMatrix {
+		valueToInt, _ := strconv.Atoi(value)
+		total += valueToInt
+	}
+	return total, nil
+}
+
+func Multiply(matrix [][]string) (int, error) {
+	var flattedMatrix []string
+	total := 0
+	flattedMatrix, _ = Flatten(matrix)
+	for key, value := range flattedMatrix {
+		valueToInt, _ := strconv.Atoi(value)
+		if key == 0 {
+			total = valueToInt
+		}
+		if key != 0 {
+			total = total * valueToInt
+		}
+	}
+	return total, nil
 }
