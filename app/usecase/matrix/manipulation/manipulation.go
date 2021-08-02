@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Returns a string with the matrix values
 func Stringify(matrix [][]string) string {
 	var response string
 	for _, row := range matrix {
@@ -14,6 +15,7 @@ func Stringify(matrix [][]string) string {
 	return response
 }
 
+// Return the matrix where the columns and rows are inverted
 func Invert(matrix [][]string) [][]string {
 	invertMatrix := make([][]string, len(matrix))
 	for i := 0; i < len(matrix); i++ {
@@ -24,6 +26,7 @@ func Invert(matrix [][]string) [][]string {
 	return invertMatrix
 }
 
+// Return a slice with the matrix flatted
 func Flatten(matrix [][]string) []string {
 	var flattedMatrix []string
 	for key := range matrix {
@@ -32,6 +35,7 @@ func Flatten(matrix [][]string) []string {
 	return flattedMatrix
 }
 
+// Return the sum of the integers in the matrix
 func Sum(matrix [][]string) (int, error) {
 	var flattedMatrix []string
 	total := 0
@@ -43,6 +47,7 @@ func Sum(matrix [][]string) (int, error) {
 	return total, nil
 }
 
+// Return the product of the integers in the matrix
 func Multiply(matrix [][]string) (int, error) {
 	var flattedMatrix []string
 	total := 0
