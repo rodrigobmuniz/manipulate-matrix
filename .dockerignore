@@ -1,0 +1,10 @@
+requirement
+README.md
+
+#Ignoring git and cache folders
+.git
+.cache
+
+#Ignoring dockerfiles
+Dockerfile
+docker-compose.yml

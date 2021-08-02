@@ -1,0 +1,19 @@
+# docker-compose.yml
+version: "3.1"
+services:
+    manipulate-matrix:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        image: ecore/manipulate-matrix
+        restart: always
+        volumes:
+            - ./file:/file
+        ports:
+            - 8080:8080
+        command: ./manipulate-matrix
+        networks:
+            - ecore-network
+networks:
+    ecore-network:
+        driver: bridge
