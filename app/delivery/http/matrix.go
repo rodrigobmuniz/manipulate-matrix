@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"manipulate-matrix/app/usecase/matrix/manipulation"
 	"net/http"
-	"strings"
 )
 
 func HaveError(err error, res http.ResponseWriter) bool {
@@ -16,7 +15,7 @@ func HaveError(err error, res http.ResponseWriter) bool {
 	return false
 }
 
-func Echo(res http.ResponseWriter, req *http.Request) {
+func ProcessMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipulation.MatrixManipulation) {
 	file, _, err := req.FormFile("file")
 	if HaveError(err, res) {
 		return
@@ -26,65 +25,26 @@ func Echo(res http.ResponseWriter, req *http.Request) {
 	if HaveError(err, res) {
 		return
 	}
-	matrixAsString := manipulation.Stringify(records)
-	fmt.Fprint(res, matrixAsString)
+	funcResult := fn(records)
+	fmt.Fprint(res, funcResult)
+}
+
+func Echo(res http.ResponseWriter, req *http.Request) {
+	ProcessMatrixRequest(res, req, manipulation.Stringify)
 }
 
 func Invert(res http.ResponseWriter, req *http.Request) {
-	file, _, err := req.FormFile("file")
-	if HaveError(err, res) {
-		return
-	}
-	defer file.Close()
-	records, err := csv.NewReader(file).ReadAll()
-	if HaveError(err, res) {
-		return
-	}
-	invertedMatrix := manipulation.Invert(records)
-	invertedMatrixAsString := manipulation.Stringify(invertedMatrix)
-	fmt.Fprint(res, invertedMatrixAsString)
+	ProcessMatrixRequest(res, req, manipulation.Invert)
 }
 
 func Flatten(res http.ResponseWriter, req *http.Request) {
-	file, _, err := req.FormFile("file")
-	if HaveError(err, res) {
-		return
-	}
-	defer file.Close()
-	records, err := csv.NewReader(file).ReadAll()
-	if HaveError(err, res) {
-		return
-	}
-	flatedMatrix := manipulation.Flatten(records)
-	var flatedMatrixAsString string
-	flatedMatrixAsString = fmt.Sprintf("%s%s\n", flatedMatrixAsString, strings.Join(flatedMatrix, ","))
-	fmt.Fprint(res, flatedMatrixAsString)
+	ProcessMatrixRequest(res, req, manipulation.Flatten)
 }
 
 func Sum(res http.ResponseWriter, req *http.Request) {
-	file, _, err := req.FormFile("file")
-	if HaveError(err, res) {
-		return
-	}
-	defer file.Close()
-	records, err := csv.NewReader(file).ReadAll()
-	if HaveError(err, res) {
-		return
-	}
-	sumOfMatrixItems, _ := manipulation.Sum(records)
-	fmt.Fprint(res, sumOfMatrixItems)
+	ProcessMatrixRequest(res, req, manipulation.Sum)
 }
 
 func Multiply(res http.ResponseWriter, req *http.Request) {
-	file, _, err := req.FormFile("file")
-	if HaveError(err, res) {
-		return
-	}
-	defer file.Close()
-	records, err := csv.NewReader(file).ReadAll()
-	if HaveError(err, res) {
-		return
-	}
-	multiplicationOfMatrixItems, _ := manipulation.Multiply(records)
-	fmt.Fprint(res, multiplicationOfMatrixItems)
+	ProcessMatrixRequest(res, req, manipulation.Multiply)
 }

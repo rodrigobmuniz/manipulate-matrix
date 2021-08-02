@@ -6,6 +6,18 @@ import (
 	"strings"
 )
 
+// Interface to public methods of matrix manipulation
+type MatrixManipulation func([][]string) string
+
+// Return a slice with the matrix flatted
+func convertMatrixToSlice(matrix [][]string) []string {
+	var flattedMatrix []string
+	for key := range matrix {
+		flattedMatrix = append(flattedMatrix, matrix[key]...)
+	}
+	return flattedMatrix
+}
+
 // Returns a string with the matrix values
 func Stringify(matrix [][]string) string {
 	var response string
@@ -16,42 +28,41 @@ func Stringify(matrix [][]string) string {
 }
 
 // Return the matrix where the columns and rows are inverted
-func Invert(matrix [][]string) [][]string {
+func Invert(matrix [][]string) string {
 	invertMatrix := make([][]string, len(matrix))
 	for i := 0; i < len(matrix); i++ {
 		for j := 0; j < len(matrix[0]); j++ {
 			invertMatrix[j] = append(invertMatrix[j], matrix[i][j])
 		}
 	}
-	return invertMatrix
+	return Stringify(invertMatrix)
 }
 
-// Return a slice with the matrix flatted
-func Flatten(matrix [][]string) []string {
-	var flattedMatrix []string
-	for key := range matrix {
-		flattedMatrix = append(flattedMatrix, matrix[key]...)
-	}
-	return flattedMatrix
+// Return a string with the matrix flatted
+func Flatten(matrix [][]string) string {
+	flattedMatrix := convertMatrixToSlice(matrix)
+	var flatedMatrixAsString string
+	flatedMatrixAsString = fmt.Sprintf("%s%s\n", flatedMatrixAsString, strings.Join(flattedMatrix, ","))
+	return flatedMatrixAsString
 }
 
 // Return the sum of the integers in the matrix
-func Sum(matrix [][]string) (int, error) {
+func Sum(matrix [][]string) string {
 	var flattedMatrix []string
 	total := 0
-	flattedMatrix = Flatten(matrix)
+	flattedMatrix = convertMatrixToSlice(matrix)
 	for _, value := range flattedMatrix {
 		valueToInt, _ := strconv.Atoi(value)
 		total += valueToInt
 	}
-	return total, nil
+	return strconv.Itoa(total)
 }
 
 // Return the product of the integers in the matrix
-func Multiply(matrix [][]string) (int, error) {
+func Multiply(matrix [][]string) string {
 	var flattedMatrix []string
 	total := 0
-	flattedMatrix = Flatten(matrix)
+	flattedMatrix = convertMatrixToSlice(matrix)
 	for key, value := range flattedMatrix {
 		valueToInt, _ := strconv.Atoi(value)
 		if key == 0 {
@@ -61,5 +72,5 @@ func Multiply(matrix [][]string) (int, error) {
 			total = total * valueToInt
 		}
 	}
-	return total, nil
+	return strconv.Itoa(total)
 }

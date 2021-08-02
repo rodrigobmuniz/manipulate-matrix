@@ -17,7 +17,7 @@ func TestCanarySpec(t *testing.T) {
 	assert.Equal(true, true, "Valide if infra for test work")
 }
 
-// Stringify test
+// HaveError test
 func TestHaveErrorReturningFalse(t *testing.T) {
 	assert := assert.New(t)
 
