@@ -11,7 +11,7 @@ func main() {
 	http.HandleFunc("/echo", matrix.Echo)
 	http.HandleFunc("/invert", matrix.Invert)
 	http.HandleFunc("/flatten", matrix.Flatten)
-	http.HandleFunc("/sun", matrix.Sum)
+	http.HandleFunc("/sum", matrix.Sum)
 	http.HandleFunc("/multiply", matrix.Multiply)
 	startServe()
 }

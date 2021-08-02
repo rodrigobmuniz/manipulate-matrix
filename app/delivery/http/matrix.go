@@ -8,16 +8,22 @@ import (
 	"strings"
 )
 
-func Echo(res http.ResponseWriter, req *http.Request) {
-	file, _, err := req.FormFile("file")
+func HaveError(err error, res http.ResponseWriter) bool {
 	if err != nil {
 		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+		return true
+	}
+	return false
+}
+
+func Echo(res http.ResponseWriter, req *http.Request) {
+	file, _, err := req.FormFile("file")
+	if HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	matrixAsString := manipulation.Stringify(records)
@@ -26,14 +32,12 @@ func Echo(res http.ResponseWriter, req *http.Request) {
 
 func Invert(res http.ResponseWriter, req *http.Request) {
 	file, _, err := req.FormFile("file")
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	invertedMatrix := manipulation.Invert(records)
@@ -43,14 +47,12 @@ func Invert(res http.ResponseWriter, req *http.Request) {
 
 func Flatten(res http.ResponseWriter, req *http.Request) {
 	file, _, err := req.FormFile("file")
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	flatedMatrix := manipulation.Flatten(records)
@@ -61,14 +63,12 @@ func Flatten(res http.ResponseWriter, req *http.Request) {
 
 func Sum(res http.ResponseWriter, req *http.Request) {
 	file, _, err := req.FormFile("file")
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	sumOfMatrixItems, _ := manipulation.Sum(records)
@@ -77,14 +77,12 @@ func Sum(res http.ResponseWriter, req *http.Request) {
 
 func Multiply(res http.ResponseWriter, req *http.Request) {
 	file, _, err := req.FormFile("file")
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+	if HaveError(err, res) {
 		return
 	}
 	multiplicationOfMatrixItems, _ := manipulation.Multiply(records)
