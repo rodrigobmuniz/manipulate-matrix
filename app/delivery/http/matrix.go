@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// If you have an error, return the error to the endpoint
 func HaveError(err error, res http.ResponseWriter) bool {
 	if err != nil {
 		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
@@ -15,6 +16,7 @@ func HaveError(err error, res http.ResponseWriter) bool {
 	return false
 }
 
+// Handles requests related to matrix manipulation
 func ProcessMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipulation.MatrixManipulation) {
 	file, _, err := req.FormFile("file")
 	if HaveError(err, res) {
