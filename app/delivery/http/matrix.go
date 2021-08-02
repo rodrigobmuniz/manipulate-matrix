@@ -2,9 +2,11 @@ package matrix
 
 import (
 	"encoding/csv"
+	"errors"
 	"fmt"
 	"manipulate-matrix/app/usecase/matrix/manipulation"
 	"net/http"
+	"strconv"
 )
 
 // If you have an error, return the error to the endpoint
@@ -16,6 +18,20 @@ func HaveError(err error, res http.ResponseWriter) bool {
 	return false
 }
 
+// Takes a string matrix and checks if all values are convertible to number
+func AllValuesAreConvertibleToNumber(matrix [][]string, res http.ResponseWriter) bool {
+	matrixAsSlice := manipulation.ConvertMatrixToSlice(matrix)
+	for _, item := range matrixAsSlice {
+		if _, err := strconv.Atoi(item); err != nil {
+			errorResponse := fmt.Sprintf("not all items in the matrix are numbers. Check: %s", err.Error())
+			var matrixWithWrongContent = errors.New(errorResponse)
+			HaveError(matrixWithWrongContent, res)
+			return false
+		}
+	}
+	return true
+}
+
 // Handles requests related to matrix manipulation
 func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipulation.MatrixManipulation) {
 	file, _, err := req.FormFile("file")
@@ -25,6 +41,9 @@ func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipul
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
 	if HaveError(err, res) {
+		return
+	}
+	if !AllValuesAreConvertibleToNumber(records, res) {
 		return
 	}
 	funcResult := fn(records)
