@@ -240,3 +240,40 @@ func TestMultiply3x3Matrix(t *testing.T) {
 
 	assert.Equal(expected, result, "should return 72000 after multiply all matrix values")
 }
+
+// Takes a string matrix and checks if all values are convertible to number
+func TestAllValuesAreConvertibleToIntReturningTrue(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+	matrix = append(matrix, []string{"5", "6", "2"})
+	matrix = append(matrix, []string{"1", "3", "2"})
+
+	expected := true
+
+	result, err := manipulation.AllValuesAreConvertibleToInt(matrix)
+
+	hasError := err != nil
+
+	assert.Equal(expected, result, "should take an matrix and return true if all items are convertible to int")
+	assert.Equal(false, hasError, "should not have generated an Error")
+}
+
+func TestAllValuesAreConvertibleToIntReturningFalse(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+	matrix = append(matrix, []string{"5", "test", "2"})
+	matrix = append(matrix, []string{"1", "3", "2"})
+
+	expected := false
+
+	result, err := manipulation.AllValuesAreConvertibleToInt(matrix)
+
+	hasError := err != nil
+
+	assert.Equal(expected, result, "should take an matrix and return false if any item are not convertible to int")
+	assert.Equal(true, hasError, "should have generated an Error with a message about the problem")
+}

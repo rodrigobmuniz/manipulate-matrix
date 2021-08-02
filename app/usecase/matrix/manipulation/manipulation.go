@@ -1,6 +1,7 @@
 package manipulation
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -73,4 +74,16 @@ func Multiply(matrix [][]string) string {
 		}
 	}
 	return strconv.Itoa(total)
+}
+
+func AllValuesAreConvertibleToInt(matrix [][]string) (bool, error) {
+	matrixAsSlice := ConvertMatrixToSlice(matrix)
+	for _, item := range matrixAsSlice {
+		if _, err := strconv.Atoi(item); err != nil {
+			errorResponse := fmt.Sprintf("not all items in the matrix are numbers. Check: %s", err.Error())
+			var matrixWithWrongContent = errors.New(errorResponse)
+			return false, matrixWithWrongContent
+		}
+	}
+	return true, nil
 }
