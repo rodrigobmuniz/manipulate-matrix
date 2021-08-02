@@ -26,6 +26,7 @@ func AllValuesAreConvertibleToNumber(matrix [][]string, res http.ResponseWriter)
 	return true
 }
 
+// Takes a string matrix and checks if the matrix is square
 func MatrixIsSquare(matrix [][]string, res http.ResponseWriter) bool {
 	isSquare, err := manipulation.TheMatrixIsSquare(matrix)
 	if !isSquare {
