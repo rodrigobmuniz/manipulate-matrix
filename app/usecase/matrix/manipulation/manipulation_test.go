@@ -60,8 +60,7 @@ func TestInvert1x1Matrix(t *testing.T) {
 	var matrix [][]string
 	matrix = append(matrix, []string{"1"})
 
-	var expected [][]string
-	expected = append(expected, []string{"1"})
+	expected := "1\n"
 	result := manipulation.Invert(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string with the values reverted")
@@ -74,9 +73,7 @@ func TestInvert2x2Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"1", "2"})
 	matrix = append(matrix, []string{"3", "4"})
 
-	var expected [][]string
-	expected = append(expected, []string{"1", "3"})
-	expected = append(expected, []string{"2", "4"})
+	expected := "1,3\n2,4\n"
 
 	result := manipulation.Invert(matrix)
 
@@ -91,30 +88,29 @@ func TestInvert3x3Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"4", "5", "6"})
 	matrix = append(matrix, []string{"7", "8", "9"})
 
-	var expected [][]string
-	expected = append(expected, []string{"1", "4", "7"})
-	expected = append(expected, []string{"2", "5", "8"})
-	expected = append(expected, []string{"3", "6", "9"})
+	expected := "1,4,7\n2,5,8\n3,6,9\n"
 
 	result := manipulation.Invert(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string with the values reverted")
 }
 
-// Flatten test
-func TestFlatten1x1Matrix(t *testing.T) {
+// ConvertMatrixToSlice test
+func TestConvertMatrixToSlice2x2(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
-	matrix = append(matrix, []string{"1"})
+	matrix = append(matrix, []string{"1", "2"})
+	matrix = append(matrix, []string{"3", "4"})
 
-	expected := []string{"1"}
+	expected := []string{"1", "2", "3", "4"}
 
-	result := manipulation.Flatten(matrix)
+	result := manipulation.ConvertMatrixToSlice(matrix)
 
-	assert.Equal(expected, result, "receive an matrix 1x1 and return a slices with all the numbers in the same order")
+	assert.Equal(expected, result, "receive an matrix 3x3 and return a slices with all the numbers in the same order")
 }
-func TestFlatten3x3Matrix(t *testing.T) {
+
+func TestConvertMatrixToSlice3x3(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
@@ -124,9 +120,23 @@ func TestFlatten3x3Matrix(t *testing.T) {
 
 	expected := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
-	result := manipulation.Flatten(matrix)
+	result := manipulation.ConvertMatrixToSlice(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a slices with all the numbers in the same order")
+}
+
+// Flatten test
+func TestFlatten1x1Matrix(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1"})
+
+	expected := "1"
+
+	result := manipulation.Flatten(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 1x1 and return a slices with all the numbers in the same order")
 }
 
 func TestFlatten4x4Matrix(t *testing.T) {
@@ -138,7 +148,7 @@ func TestFlatten4x4Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"9", "10", "11", "12"})
 	matrix = append(matrix, []string{"13", "14", "15", "16"})
 
-	expected := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"}
+	expected := "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16"
 
 	result := manipulation.Flatten(matrix)
 
@@ -146,34 +156,34 @@ func TestFlatten4x4Matrix(t *testing.T) {
 }
 
 // Sum test
-func TestSu1x1Matrix(t *testing.T) {
+func TestSum1x1Matrix(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
 	matrix = append(matrix, []string{"10"})
 
-	expected := 10
+	expected := "10"
 
-	result, _ := manipulation.Sum(matrix)
+	result := manipulation.Sum(matrix)
 
 	assert.Equal(expected, result, "should return 10 after summing all matrix values")
 }
 
-func TestSun2x2Matrix(t *testing.T) {
+func TestSum2x2Matrix(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
 	matrix = append(matrix, []string{"10", "20"})
 	matrix = append(matrix, []string{"30", "40"})
 
-	expected := 100
+	expected := "100"
 
-	result, _ := manipulation.Sum(matrix)
+	result := manipulation.Sum(matrix)
 
 	assert.Equal(expected, result, "should return 100 after summing all matrix values")
 }
 
-func TestSun3x3Matrix(t *testing.T) {
+func TestSum3x3Matrix(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
@@ -181,9 +191,9 @@ func TestSun3x3Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"-4", "5", "6"})
 	matrix = append(matrix, []string{"7", "8", "9"})
 
-	expected := 37
+	expected := "37"
 
-	result, _ := manipulation.Sum(matrix)
+	result := manipulation.Sum(matrix)
 
 	assert.Equal(expected, result, "should return 45 after summing all matrix values")
 }
@@ -195,9 +205,9 @@ func TestMultiply1x1Matrix(t *testing.T) {
 	var matrix [][]string
 	matrix = append(matrix, []string{"100"})
 
-	expected := 100
+	expected := "100"
 
-	result, _ := manipulation.Multiply(matrix)
+	result := manipulation.Multiply(matrix)
 
 	assert.Equal(expected, result, "should return 100 after multiply all matrix values")
 }
@@ -209,9 +219,9 @@ func TestMultiply2x2Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"10", "20"})
 	matrix = append(matrix, []string{"30", "40"})
 
-	expected := 240000
+	expected := "240000"
 
-	result, _ := manipulation.Multiply(matrix)
+	result := manipulation.Multiply(matrix)
 
 	assert.Equal(expected, result, "should return 240000 after multiply all matrix values")
 }
@@ -224,9 +234,9 @@ func TestMultiply3x3Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"5", "6", "2"})
 	matrix = append(matrix, []string{"1", "3", "2"})
 
-	expected := -72000
+	expected := "-72000"
 
-	result, _ := manipulation.Multiply(matrix)
+	result := manipulation.Multiply(matrix)
 
 	assert.Equal(expected, result, "should return 72000 after multiply all matrix values")
 }
