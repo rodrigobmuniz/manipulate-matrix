@@ -27,7 +27,7 @@ func Invert(matrix [][]string) ([][]string, error) {
 
 func Flatten(matrix [][]string) ([]string, error) {
 	var flattedMatrix []string
-	for key, _ := range matrix {
+	for key := range matrix {
 		flattedMatrix = append(flattedMatrix, matrix[key]...)
 	}
 	return flattedMatrix, nil

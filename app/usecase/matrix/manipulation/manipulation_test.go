@@ -178,10 +178,10 @@ func TestSun3x3Matrix(t *testing.T) {
 
 	var matrix [][]string
 	matrix = append(matrix, []string{"1", "2", "3"})
-	matrix = append(matrix, []string{"4", "5", "6"})
+	matrix = append(matrix, []string{"-4", "5", "6"})
 	matrix = append(matrix, []string{"7", "8", "9"})
 
-	expected := 45
+	expected := 37
 
 	result, _ := manipulation.Sum(matrix)
 
@@ -220,11 +220,11 @@ func TestMultiply3x3Matrix(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
-	matrix = append(matrix, []string{"1", "20", "10"})
+	matrix = append(matrix, []string{"-1", "20", "10"})
 	matrix = append(matrix, []string{"5", "6", "2"})
 	matrix = append(matrix, []string{"1", "3", "2"})
 
-	expected := 72000
+	expected := -72000
 
 	result, _ := manipulation.Multiply(matrix)
 
