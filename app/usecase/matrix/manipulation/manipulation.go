@@ -6,13 +6,12 @@ import (
 	"strings"
 )
 
-func Stringify(matrix [][]string) (string, error) {
-	//add error return for not [][]string
+func Stringify(matrix [][]string) string {
 	var response string
 	for _, row := range matrix {
 		response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
 	}
-	return response, nil
+	return response
 }
 
 func Invert(matrix [][]string) ([][]string, error) {

@@ -21,7 +21,7 @@ func TestStringify1x1Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"1"})
 	expected := "1\n"
 
-	result, _ := manipulation.Stringify(matrix)
+	result := manipulation.Stringify(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 1x1 and return a string that exactly represents the received matrix")
 }
@@ -34,7 +34,7 @@ func TestStringify2x2Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"2", "20"})
 	expected := "1,10\n2,20\n"
 
-	result, _ := manipulation.Stringify(matrix)
+	result := manipulation.Stringify(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 2x2 and return a string that exactly represents the received matrix")
 }
@@ -48,7 +48,7 @@ func TestStringify3x3Matrix(t *testing.T) {
 	matrix = append(matrix, []string{"7", "8", "9"})
 	expected := "1,2,3\n4,5,6\n7,8,9\n"
 
-	result, _ := manipulation.Stringify(matrix)
+	result := manipulation.Stringify(matrix)
 
 	assert.Equal(expected, result, "receive an matrix 3x3 and return a string that exactly represents the received matrix")
 }
