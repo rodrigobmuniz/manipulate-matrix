@@ -2,7 +2,7 @@
 
 ## About
 
-Project created at the request of ECore, to assess the skills and good practices of backend programmer
+Project created at the request of ECore, to assess the skills and good practices of backend programmer (League Backend Challenge)
 
 ## How to run web server
 
@@ -49,6 +49,10 @@ go run main.go
 Inside the project's root folder, you should run the following c:
 
 ### Send request
+
+```
+curl -F 'file=@[FILE_PATH]' "localhost:8080/echo"
+```
 
 ```
 curl -F 'file=@file/matrix.csv' "localhost:8080/echo"
