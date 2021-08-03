@@ -4,7 +4,7 @@
 
 Project created at the request of ECore, to assess the skills and good practices of backend programmer
 
-## How to run
+## How to run web server
 
 1. Download the zipped folder
 2. Extract the content to a location you have access to
@@ -15,11 +15,16 @@ Project created at the request of ECore, to assess the skills and good practices
 Double click on the file: `manipulate-matrix`
 
 Or:
-
 Access the folder in question via terminal and run the following command
 
 ```
 ./manipulate-matrix
+```
+
+Or:
+
+```
+go run main.go
 ```
 
 ### Windows
@@ -27,16 +32,23 @@ Access the folder in question via terminal and run the following command
 Double click on the file: `manipulate-matrix.exe`
 
 Or:
-
 Access the folder in question via terminal and run the following command
 
 ```
 ./manipulate-matrix.exe
 ```
 
+Or:
+
+```
+go run main.go
+```
+
 ## How to use
 
 Inside the project's root folder, you should run the following c:
+
+### Send request
 
 ```
 curl -F 'file=@file/matrix.csv' "localhost:8080/echo"
