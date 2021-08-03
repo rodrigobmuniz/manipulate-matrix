@@ -53,8 +53,6 @@ To upload other files you must copy these files to the `file` folder inside the 
 
 ## All Operations
 
-Given an uploaded csv file
-
 1. Echo
 
     command:
