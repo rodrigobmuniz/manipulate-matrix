@@ -4,18 +4,34 @@
 
 Project created at the request of ECore, to assess the skills and good practices of backend programmer (League Backend Challenge)
 
+## How to generate the build
+
+From the project's root folder run:
+
+```
+go build -o manipulate-matrix main.go
+```
+
 ## How to run web server
 
 1. Download the zipped folder
 2. Extract the content to a location you have access to
 3. Access the folder with the extracted content (project's root folder)
 
+### Docker
+
+From the project's root folder:
+
+```
+docker-compose up --build
+```
+
 ### Linux or Mac
 
 Double click on the file: `manipulate-matrix`
 
 Or:
-Access the folder in question via terminal and run the following command
+From the project's root folder run the following command
 
 ```
 ./manipulate-matrix
@@ -32,7 +48,7 @@ go run main.go
 Double click on the file: `manipulate-matrix.exe`
 
 Or:
-Access the folder in question via terminal and run the following command
+From the project's root folder run the following command
 
 ```
 ./manipulate-matrix.exe
@@ -46,7 +62,7 @@ go run main.go
 
 ## How to use
 
-Inside the project's root folder, you should run the following c:
+Inside the project's root folder, you should run the following:
 
 ### Send request
 
