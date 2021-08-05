@@ -266,7 +266,7 @@ func TestAllValuesAreConvertibleToIntReturningTrue(t *testing.T) {
 
 	expected := true
 
-	result, err := manipulation.AllValuesAreConvertibleToInt(matrix)
+	result, err := manipulation.AllValuesAreConvertibleToBigInt(matrix)
 
 	hasError := err != nil
 
@@ -284,7 +284,7 @@ func TestAllValuesAreConvertibleToIntReturningFalse(t *testing.T) {
 
 	expected := false
 
-	result, err := manipulation.AllValuesAreConvertibleToInt(matrix)
+	result, err := manipulation.AllValuesAreConvertibleToBigInt(matrix)
 
 	hasError := err != nil
 

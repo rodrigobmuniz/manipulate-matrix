@@ -18,7 +18,7 @@ func HaveError(err error, res http.ResponseWriter) bool {
 
 // Takes a string matrix and checks if all values are convertible to number
 func AllValuesAreConvertibleToNumber(matrix [][]string, res http.ResponseWriter) bool {
-	isConvertible, err := manipulation.AllValuesAreConvertibleToInt(matrix)
+	isConvertible, err := manipulation.AllValuesAreConvertibleToBigInt(matrix)
 	if !isConvertible {
 		HaveError(err, res)
 		return false

@@ -67,25 +67,26 @@ func Multiply(matrix [][]string) string {
 	total, _ = total.SetString("0", 10)
 	flattedMatrix = ConvertMatrixToSlice(matrix)
 	for key, value := range flattedMatrix {
-		n := new(big.Int)
-		valueToInt, _ := n.SetString(value, 10)
+		bitIntValue := new(big.Int)
+		valueToInt, _ := bitIntValue.SetString(value, 10)
 
 		if key == 0 {
 			total = valueToInt
 		}
 		if key != 0 {
-			// total = total * valueToInt
 			total.Mul(total, valueToInt)
 		}
 	}
 	return total.String()
 }
 
-func AllValuesAreConvertibleToInt(matrix [][]string) (bool, error) {
+func AllValuesAreConvertibleToBigInt(matrix [][]string) (bool, error) {
 	matrixAsSlice := ConvertMatrixToSlice(matrix)
 	for _, item := range matrixAsSlice {
-		if _, err := strconv.Atoi(item); err != nil {
-			errorResponse := fmt.Sprintf("not all items in the matrix are numbers. Check: %s", err.Error())
+		bitIntValue := new(big.Int)
+		// valueToInt, _ := bitIntValue.SetString(value, 10)
+		if _, converted := bitIntValue.SetString(item, 10); !converted {
+			errorResponse := "not all items in the matrix are numbers"
 			var matrixWithWrongContent = errors.New(errorResponse)
 			return false, matrixWithWrongContent
 		}
