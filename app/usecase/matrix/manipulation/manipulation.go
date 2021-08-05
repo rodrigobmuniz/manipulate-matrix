@@ -3,6 +3,7 @@ package manipulation
 import (
 	"errors"
 	"fmt"
+	"math/big"
 	"strconv"
 	"strings"
 )
@@ -62,18 +63,22 @@ func Sum(matrix [][]string) string {
 // Return the product of the integers in the matrix
 func Multiply(matrix [][]string) string {
 	var flattedMatrix []string
-	total := 0
+	total := new(big.Int)
+	total, _ = total.SetString("0", 10)
 	flattedMatrix = ConvertMatrixToSlice(matrix)
 	for key, value := range flattedMatrix {
-		valueToInt, _ := strconv.Atoi(value)
+		n := new(big.Int)
+		valueToInt, _ := n.SetString(value, 10)
+
 		if key == 0 {
 			total = valueToInt
 		}
 		if key != 0 {
-			total = total * valueToInt
+			// total = total * valueToInt
+			total.Mul(total, valueToInt)
 		}
 	}
-	return strconv.Itoa(total)
+	return total.String()
 }
 
 func AllValuesAreConvertibleToInt(matrix [][]string) (bool, error) {

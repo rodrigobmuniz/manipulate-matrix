@@ -241,6 +241,20 @@ func TestMultiply3x3Matrix(t *testing.T) {
 	assert.Equal(expected, result, "should return 72000 after multiply all matrix values")
 }
 
+func TestMultiply2x2MatrixWithBigInt(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "1"})
+	matrix = append(matrix, []string{"314159265358979323846264338327950288419716939937510582097494459", "2"})
+
+	expected := "628318530717958647692528676655900576839433879875021164194988918"
+
+	result := manipulation.Multiply(matrix)
+
+	assert.Equal(expected, result, "should return 72000 after multiply all matrix values")
+}
+
 // Takes a string matrix and checks if all values are convertible to number
 func TestAllValuesAreConvertibleToIntReturningTrue(t *testing.T) {
 	assert := assert.New(t)
