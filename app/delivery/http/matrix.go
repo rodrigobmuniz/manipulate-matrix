@@ -3,58 +3,30 @@ package matrix
 import (
 	"encoding/csv"
 	"fmt"
+	"manipulate-matrix/app/helper"
 	"manipulate-matrix/app/usecase/matrix/manipulation"
 	"net/http"
 )
 
-// If you have an error, return the error to the endpoint
-func HaveError(err error, res http.ResponseWriter) bool {
-	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
-		return true
-	}
-	return false
-}
-
-// Takes a string matrix and checks if all values are convertible to number
-func AllValuesAreConvertibleToNumber(matrix [][]string, res http.ResponseWriter) bool {
-	isConvertible, err := manipulation.AllValuesAreConvertibleToBigInt(matrix)
-	if !isConvertible {
-		HaveError(err, res)
-		return false
-	}
-	return true
-}
-
-// Takes a string matrix and checks if the matrix is square
-func MatrixIsSquare(matrix [][]string, res http.ResponseWriter) bool {
-	isSquare, err := manipulation.TheMatrixIsSquare(matrix)
-	if !isSquare {
-		HaveError(err, res)
-		return false
-	}
-	return true
-}
-
 // Handles requests related to matrix manipulation
 func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipulation.MatrixManipulation) {
 	file, _, err := req.FormFile("file")
-	if HaveError(err, res) {
+	if helper.HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if HaveError(err, res) {
+	if helper.HaveError(err, res) {
 		return
 	}
-	if !MatrixIsSquare(records, res) {
+	if !helper.MatrixIsSquare(records, res) {
 		return
 	}
-	if !AllValuesAreConvertibleToNumber(records, res) {
+	if !helper.AllValuesAreConvertibleToNumber(records, res) {
 		return
 	}
 	funcResult, err := fn(records)
-	if HaveError(err, res) {
+	if helper.HaveError(err, res) {
 		return
 	}
 	fmt.Fprint(res, funcResult)

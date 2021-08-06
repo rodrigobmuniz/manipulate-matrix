@@ -255,8 +255,8 @@ func TestMultiply2x2MatrixWithBigInt(t *testing.T) {
 	assert.Equal(expected, result, "should return 72000 after multiply all matrix values")
 }
 
-// Takes a string matrix and checks if all values are convertible to number
-func TestAllValuesAreConvertibleToIntReturningTrue(t *testing.T) {
+// AllValuesAreConvertibleToBigInt test
+func TestAllValuesAreConvertibleToBigIntReturningTrue(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
@@ -274,7 +274,7 @@ func TestAllValuesAreConvertibleToIntReturningTrue(t *testing.T) {
 	assert.Equal(false, hasError, "should not have generated an Error")
 }
 
-func TestAllValuesAreConvertibleToIntReturningFalse(t *testing.T) {
+func TestAllValuesAreConvertibleToBigIntReturningFalse(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
@@ -292,6 +292,7 @@ func TestAllValuesAreConvertibleToIntReturningFalse(t *testing.T) {
 	assert.Equal(true, hasError, "should have generated an Error with a message about the problem")
 }
 
+// TestTheMatrixIsSquare test
 func TestTheMatrixIsSquare1x1(t *testing.T) {
 	assert := assert.New(t)
 
