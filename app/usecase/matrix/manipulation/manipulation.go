@@ -11,15 +11,6 @@ import (
 // Interface to public methods of matrix manipulation
 type MatrixManipulation func([][]string) (string, error)
 
-// Return a slice with the matrix flatted
-func ConvertMatrixToSlice(matrix [][]string) []string {
-	var flattedMatrix []string
-	for key := range matrix {
-		flattedMatrix = append(flattedMatrix, matrix[key]...)
-	}
-	return flattedMatrix
-}
-
 // Return the matrix as a string in matrix format
 func Stringify(matrix [][]string) (string, error) {
 	var response string
@@ -84,6 +75,15 @@ func Multiply(matrix [][]string) (string, error) {
 		}
 	}
 	return total.String(), nil
+}
+
+// Return a slice with the matrix flatted
+func ConvertMatrixToSlice(matrix [][]string) []string {
+	var flattedMatrix []string
+	for key := range matrix {
+		flattedMatrix = append(flattedMatrix, matrix[key]...)
+	}
+	return flattedMatrix
 }
 
 func AllValuesAreConvertibleToBigInt(matrix [][]string) (bool, error) {
