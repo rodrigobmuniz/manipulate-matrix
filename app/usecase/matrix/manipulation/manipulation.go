@@ -9,7 +9,7 @@ import (
 )
 
 // Interface to public methods of matrix manipulation
-type MatrixManipulation func([][]string) string
+type MatrixManipulation func([][]string) (string, error)
 
 // Return a slice with the matrix flatted
 func ConvertMatrixToSlice(matrix [][]string) []string {
@@ -21,16 +21,16 @@ func ConvertMatrixToSlice(matrix [][]string) []string {
 }
 
 // Return the matrix as a string in matrix format
-func Stringify(matrix [][]string) string {
+func Stringify(matrix [][]string) (string, error) {
 	var response string
 	for _, row := range matrix {
 		response = fmt.Sprintf("%s%s\n", response, strings.Join(row, ","))
 	}
-	return response
+	return response, nil
 }
 
 // Return the matrix as a string in matrix format where the columns and rows are inverted
-func Invert(matrix [][]string) string {
+func Invert(matrix [][]string) (string, error) {
 	invertMatrix := make([][]string, len(matrix))
 	for i := 0; i < len(matrix); i++ {
 		for j := 0; j < len(matrix[0]); j++ {
@@ -41,28 +41,34 @@ func Invert(matrix [][]string) string {
 }
 
 // Return the matrix as a 1 line string, with values separated by commas
-func Flatten(matrix [][]string) string {
+func Flatten(matrix [][]string) (string, error) {
 	flattedMatrix := ConvertMatrixToSlice(matrix)
 	var flatedMatrixAsString string
 	flatedMatrixAsString = fmt.Sprintf("%s%s", flatedMatrixAsString, strings.Join(flattedMatrix, ","))
-	return flatedMatrixAsString
+	return flatedMatrixAsString, nil
 }
 
 // Return the sum of the integers in the matrix
-func Sum(matrix [][]string) string {
+func Sum(matrix [][]string) (string, error) {
 	var flattedMatrix []string
+	if len(flattedMatrix) > 0 {
+		return "", errors.New("empty matrix cannot be summed")
+	}
 	total := 0
 	flattedMatrix = ConvertMatrixToSlice(matrix)
 	for _, value := range flattedMatrix {
 		valueToInt, _ := strconv.Atoi(value)
 		total += valueToInt
 	}
-	return strconv.Itoa(total)
+	return strconv.Itoa(total), nil
 }
 
 // Return the product of the integers in the matrix
-func Multiply(matrix [][]string) string {
+func Multiply(matrix [][]string) (string, error) {
 	var flattedMatrix []string
+	if len(flattedMatrix) > 0 {
+		return "", errors.New("empty matrix cannot be multiplied")
+	}
 	total := new(big.Int)
 	total, _ = total.SetString("0", 10)
 	flattedMatrix = ConvertMatrixToSlice(matrix)
@@ -77,14 +83,13 @@ func Multiply(matrix [][]string) string {
 			total.Mul(total, valueToInt)
 		}
 	}
-	return total.String()
+	return total.String(), nil
 }
 
 func AllValuesAreConvertibleToBigInt(matrix [][]string) (bool, error) {
 	matrixAsSlice := ConvertMatrixToSlice(matrix)
 	for _, item := range matrixAsSlice {
 		bitIntValue := new(big.Int)
-		// valueToInt, _ := bitIntValue.SetString(value, 10)
 		if _, converted := bitIntValue.SetString(item, 10); !converted {
 			errorResponse := "not all items in the matrix are numbers"
 			var matrixWithWrongContent = errors.New(errorResponse)

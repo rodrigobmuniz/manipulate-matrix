@@ -53,7 +53,10 @@ func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipul
 	if !AllValuesAreConvertibleToNumber(records, res) {
 		return
 	}
-	funcResult := fn(records)
+	funcResult, err := fn(records)
+	if HaveError(err, res) {
+		return
+	}
 	fmt.Fprint(res, funcResult)
 }
 
