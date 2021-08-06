@@ -31,7 +31,7 @@ func TestHaveErrorReturningTrue(t *testing.T) {
 	assert := assert.New(t)
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body>Hello World!</body></html>")
+		io.WriteString(w, "")
 	}
 	req := httptest.NewRequest("GET", "http://test.com", nil)
 	w := httptest.NewRecorder()
@@ -50,7 +50,7 @@ func TestAllValuesAreConvertibleToNumberReturningTrue(t *testing.T) {
 	matrixOfStrings = append(matrixOfStrings, []string{"2", "20"})
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body>Hello World!</body></html>")
+		io.WriteString(w, "")
 	}
 	req := httptest.NewRequest("GET", "http://test.com", nil)
 	w := httptest.NewRecorder()
@@ -69,7 +69,7 @@ func TestAllValuesAreConvertibleToNumberReturningFalse(t *testing.T) {
 	matrixOfStrings = append(matrixOfStrings, []string{"test", "20"})
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body>Hello World!</body></html>")
+		io.WriteString(w, "")
 	}
 	req := httptest.NewRequest("GET", "http://test.com", nil)
 	w := httptest.NewRecorder()
@@ -89,7 +89,7 @@ func TestMatrixIsSquare(t *testing.T) {
 	matrixSquare = append(matrixSquare, []string{"2", "20"})
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body>Hello World!</body></html>")
+		io.WriteString(w, "")
 	}
 	req := httptest.NewRequest("GET", "http://test.com", nil)
 	w := httptest.NewRecorder()
@@ -109,7 +109,7 @@ func TesMatrixIsSquareReturningFalse(t *testing.T) {
 	matrixNotSquare = append(matrixNotSquare, []string{"1", "10", "3"})
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body>Hello World!</body></html>")
+		io.WriteString(w, "")
 	}
 	req := httptest.NewRequest("GET", "http://test.com", nil)
 	w := httptest.NewRecorder()
