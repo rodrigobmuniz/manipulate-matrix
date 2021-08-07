@@ -19,6 +19,9 @@ func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipul
 	if helper.HaveError(err, res) {
 		return
 	}
+	if helper.CheckIfMatrixIsEmpty(records, res) {
+		return
+	}
 	if !helper.MatrixIsSquare(records, res) {
 		return
 	}

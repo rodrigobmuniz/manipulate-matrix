@@ -9,7 +9,7 @@ import (
 // If you have an error, return the error to the endpoint
 func HaveError(err error, res http.ResponseWriter) bool {
 	if err != nil {
-		res.Write([]byte(fmt.Sprintf("error %s", err.Error())))
+		res.Write([]byte(fmt.Sprintf("error: %s", err.Error())))
 		return true
 	}
 	return false
@@ -33,4 +33,13 @@ func MatrixIsSquare(matrix [][]string, res http.ResponseWriter) bool {
 		return false
 	}
 	return true
+}
+
+func CheckIfMatrixIsEmpty(matrix [][]string, res http.ResponseWriter) bool {
+	isEmpty, err := manipulation.TheMatrixIsEmpty(matrix)
+	if isEmpty {
+		HaveError(err, res)
+		return true
+	}
+	return false
 }

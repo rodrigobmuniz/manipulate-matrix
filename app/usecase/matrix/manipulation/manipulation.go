@@ -113,7 +113,7 @@ func TheMatrixIsEmpty(matrix [][]string) (bool, error) {
 	flattedMatrix, _ := Flatten(matrix)
 
 	if flattedMatrix == "" {
-		return true, errors.New("matrix received is not square")
+		return true, errors.New("sent matrix is empty")
 	}
 
 	return false, nil
