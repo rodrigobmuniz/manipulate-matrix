@@ -198,6 +198,21 @@ func TestSum3x3Matrix(t *testing.T) {
 	assert.Equal(expected, result, "should return 45 after summing all matrix values")
 }
 
+func TestSum3x3MatrixWithBigInt(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"2", "2", "3"})
+	matrix = append(matrix, []string{"4", "548393499987297854564222986020478965075617516776944461972515623429223175", "6"})
+	matrix = append(matrix, []string{"7", "1", "9"})
+
+	expected := "548393499987297854564222986020478965075617516776944461972515623429223209"
+
+	result, _ := manipulation.Sum(matrix)
+
+	assert.Equal(expected, result, "should return 45 after summing all matrix values")
+}
+
 // Multiply test
 func TestMultiply1x1Matrix(t *testing.T) {
 	assert := assert.New(t)
