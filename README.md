@@ -184,10 +184,10 @@ go test -v ./...
 --- PASS: TestHaveErrorReturningFalse (0.00s)
 === RUN   TestHaveErrorReturningTrue
 --- PASS: TestHaveErrorReturningTrue (0.00s)
-=== RUN   TestAllValuesAreConvertibleToNumberReturningTrue
---- PASS: TestAllValuesAreConvertibleToNumberReturningTrue (0.00s)
-=== RUN   TestAllValuesAreConvertibleToNumberReturningFalse
---- PASS: TestAllValuesAreConvertibleToNumberReturningFalse (0.00s)
+=== RUN   TestCheckIfAllValuesAreConvertibleToNumberReturningTrue
+--- PASS: TestCheckIfAllValuesAreConvertibleToNumberReturningTrue (0.00s)
+=== RUN   TestCheckIfAllValuesAreConvertibleToNumberReturningFalse
+--- PASS: TestCheckIfAllValuesAreConvertibleToNumberReturningFalse (0.00s)
 === RUN   TestCheckIfMatrixIsSquare
 --- PASS: TestCheckIfMatrixIsSquare (0.00s)
 PASS

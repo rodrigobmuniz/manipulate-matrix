@@ -41,8 +41,8 @@ func TestHaveErrorReturningTrue(t *testing.T) {
 	assert.Equal(true, helper.HaveError(err, w), "should return true if error have a error")
 }
 
-// AllValuesAreConvertibleToNumber test
-func TestAllValuesAreConvertibleToNumberReturningTrue(t *testing.T) {
+// CheckIfAllValuesAreConvertibleToNumber test
+func TestCheckIfAllValuesAreConvertibleToNumberReturningTrue(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrixOfStrings [][]string
@@ -56,12 +56,12 @@ func TestAllValuesAreConvertibleToNumberReturningTrue(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.AllValuesAreConvertibleToNumber(matrixOfStrings, w)
+	result := helper.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
 
 	assert.Equal(true, result, "should matrix an array only and INT and return true")
 }
 
-func TestAllValuesAreConvertibleToNumberReturningFalse(t *testing.T) {
+func TestCheckIfAllValuesAreConvertibleToNumberReturningFalse(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrixOfStrings [][]string
@@ -75,12 +75,12 @@ func TestAllValuesAreConvertibleToNumberReturningFalse(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.AllValuesAreConvertibleToNumber(matrixOfStrings, w)
+	result := helper.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
 
 	assert.Equal(false, result, "should receive an matrix only and INT and return true")
 }
 
-// AllValuesAreConvertibleToNumber test
+// CheckIfAllValuesAreConvertibleToNumber test
 func TestCheckIfMatrixIsSquare(t *testing.T) {
 	assert := assert.New(t)
 
