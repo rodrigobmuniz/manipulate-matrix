@@ -1,8 +1,8 @@
-package helper
+package helperHttp
 
 import (
 	"fmt"
-	"manipulate-matrix/app/usecase/matrix/manipulation"
+	"manipulate-matrix/app/usecase/matrix/helperMatrix"
 	"net/http"
 )
 
@@ -17,7 +17,7 @@ func HaveError(err error, res http.ResponseWriter) bool {
 
 // Takes a string matrix and checks if all values are convertible to number
 func CheckIfAllValuesAreConvertibleToNumber(matrix [][]string, res http.ResponseWriter) bool {
-	isConvertible, err := manipulation.AllValuesAreConvertibleToBigInt(matrix)
+	isConvertible, err := helperMatrix.AllValuesAreConvertibleToBigInt(matrix)
 	if !isConvertible {
 		HaveError(err, res)
 		return false
@@ -27,7 +27,7 @@ func CheckIfAllValuesAreConvertibleToNumber(matrix [][]string, res http.Response
 
 // Takes a string matrix and checks if the matrix is square
 func CheckIfMatrixIsSquare(matrix [][]string, res http.ResponseWriter) bool {
-	isSquare, err := manipulation.TheCheckIfMatrixIsSquare(matrix)
+	isSquare, err := helperMatrix.TheCheckIfMatrixIsSquare(matrix)
 	if !isSquare {
 		HaveError(err, res)
 		return false
@@ -35,8 +35,9 @@ func CheckIfMatrixIsSquare(matrix [][]string, res http.ResponseWriter) bool {
 	return true
 }
 
+// Takes a string matrix and checks if the matrix is empty
 func CheckIfMatrixIsEmpty(matrix [][]string, res http.ResponseWriter) bool {
-	isEmpty, err := manipulation.TheMatrixIsEmpty(matrix)
+	isEmpty, err := helperMatrix.TheMatrixIsEmpty(matrix)
 	if isEmpty {
 		HaveError(err, res)
 		return true

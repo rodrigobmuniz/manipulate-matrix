@@ -3,7 +3,7 @@ package matrix
 import (
 	"encoding/csv"
 	"fmt"
-	"manipulate-matrix/app/helper"
+	"manipulate-matrix/app/delivery/http/helperHttp"
 	"manipulate-matrix/app/usecase/matrix/manipulation"
 	"net/http"
 )
@@ -11,25 +11,25 @@ import (
 // Handles requests related to matrix manipulation
 func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipulation.MatrixManipulation) {
 	file, _, err := req.FormFile("file")
-	if helper.HaveError(err, res) {
+	if helperHttp.HaveError(err, res) {
 		return
 	}
 	defer file.Close()
 	records, err := csv.NewReader(file).ReadAll()
-	if helper.HaveError(err, res) {
+	if helperHttp.HaveError(err, res) {
 		return
 	}
-	if helper.CheckIfMatrixIsEmpty(records, res) {
+	if helperHttp.CheckIfMatrixIsEmpty(records, res) {
 		return
 	}
-	if !helper.CheckIfMatrixIsSquare(records, res) {
+	if !helperHttp.CheckIfMatrixIsSquare(records, res) {
 		return
 	}
-	if !helper.CheckIfAllValuesAreConvertibleToNumber(records, res) {
+	if !helperHttp.CheckIfAllValuesAreConvertibleToNumber(records, res) {
 		return
 	}
 	funcResult, err := fn(records)
-	if helper.HaveError(err, res) {
+	if helperHttp.HaveError(err, res) {
 		return
 	}
 	fmt.Fprint(res, funcResult)

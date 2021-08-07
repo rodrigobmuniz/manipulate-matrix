@@ -1,9 +1,9 @@
-package helper_test
+package helperHttp_test
 
 import (
 	"errors"
 	"io"
-	"manipulate-matrix/app/helper"
+	"manipulate-matrix/app/delivery/http/helperHttp"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -24,7 +24,7 @@ func TestHaveErrorReturningFalse(t *testing.T) {
 	var err error
 	var res http.ResponseWriter
 
-	assert.Equal(false, helper.HaveError(err, res), "should return false if error is null")
+	assert.Equal(false, helperHttp.HaveError(err, res), "should return false if error is null")
 }
 
 func TestHaveErrorReturningTrue(t *testing.T) {
@@ -38,7 +38,7 @@ func TestHaveErrorReturningTrue(t *testing.T) {
 	handler(w, req)
 	var err = errors.New("an error has occurred")
 
-	assert.Equal(true, helper.HaveError(err, w), "should return true if error have a error")
+	assert.Equal(true, helperHttp.HaveError(err, w), "should return true if error have a error")
 }
 
 // CheckIfAllValuesAreConvertibleToNumber test
@@ -56,7 +56,7 @@ func TestCheckIfAllValuesAreConvertibleToNumberReturningTrue(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
+	result := helperHttp.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
 
 	assert.Equal(true, result, "should matrix an array only and INT and return true")
 }
@@ -75,13 +75,13 @@ func TestCheckIfAllValuesAreConvertibleToNumberReturningFalse(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
+	result := helperHttp.CheckIfAllValuesAreConvertibleToNumber(matrixOfStrings, w)
 
 	assert.Equal(false, result, "should receive an matrix only and INT and return true")
 }
 
 // CheckIfAllValuesAreConvertibleToNumber test
-func TestCheckIfMatrixIsSquare(t *testing.T) {
+func TestCheckIfMatrixIsSquareReturningTrue(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrixSquare [][]string
@@ -95,7 +95,7 @@ func TestCheckIfMatrixIsSquare(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfMatrixIsSquare(matrixSquare, w)
+	result := helperHttp.CheckIfMatrixIsSquare(matrixSquare, w)
 
 	assert.Equal(true, result, "should receive an matrix and return true if it is square")
 }
@@ -115,17 +115,16 @@ func TesCheckIfMatrixIsSquareReturningFalse(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfMatrixIsSquare(matrixNotSquare, w)
+	result := helperHttp.CheckIfMatrixIsSquare(matrixNotSquare, w)
 
 	assert.Equal(false, result, "should receive an matrix only and INT and return true")
 }
 
-// Test
+// Test CheckIfMatrixIsEmpty
 func TestCheckIfMatrixIsEmptyReturningTrue(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrixEmpty [][]string
-	matrixEmpty = append(matrixEmpty, []string{""})
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, "")
@@ -134,7 +133,7 @@ func TestCheckIfMatrixIsEmptyReturningTrue(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfMatrixIsEmpty(matrixEmpty, w)
+	result := helperHttp.CheckIfMatrixIsEmpty(matrixEmpty, w)
 
 	assert.Equal(true, result, "should receive an empty matrix and return true")
 }
@@ -152,7 +151,7 @@ func TestCheckIfMatrix1x1IsEmptyReturningFalse(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfMatrixIsEmpty(matrix, w)
+	result := helperHttp.CheckIfMatrixIsEmpty(matrix, w)
 
 	assert.Equal(false, result, "should receive matrix 1x1 and return false")
 }
@@ -171,7 +170,7 @@ func TestCheckIfMatrix2x2IsEmptyReturningFalse(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 
-	result := helper.CheckIfMatrixIsEmpty(matrix, w)
+	result := helperHttp.CheckIfMatrixIsEmpty(matrix, w)
 
 	assert.Equal(false, result, "should receive matrix 2x2 and return false")
 }
