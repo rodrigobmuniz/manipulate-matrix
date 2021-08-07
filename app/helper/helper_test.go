@@ -119,3 +119,59 @@ func TesMatrixIsSquareReturningFalse(t *testing.T) {
 
 	assert.Equal(false, result, "should receive an matrix only and INT and return true")
 }
+
+// Test
+func TestCheckIfMatrixIsEmptyReturningTrue(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrixEmpty [][]string
+	matrixEmpty = append(matrixEmpty, []string{""})
+
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, "")
+	}
+	req := httptest.NewRequest("GET", "http://test.com", nil)
+	w := httptest.NewRecorder()
+	handler(w, req)
+
+	result := helper.CheckIfMatrixIsEmpty(matrixEmpty, w)
+
+	assert.Equal(true, result, "should receive an empty matrix and return true")
+}
+
+func TestCheckIfMatrix1x1IsEmptyReturningFalse(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"628318530717958647692528676655900576839433879875021164194988918"})
+
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, "")
+	}
+	req := httptest.NewRequest("GET", "http://test.com", nil)
+	w := httptest.NewRecorder()
+	handler(w, req)
+
+	result := helper.CheckIfMatrixIsEmpty(matrix, w)
+
+	assert.Equal(false, result, "should receive matrix 1x1 and return false")
+}
+
+func TestCheckIfMatrix2x2IsEmptyReturningFalse(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "10"})
+	matrix = append(matrix, []string{"20", "628318530717958647692528676655900576839433879875021164194988918"})
+
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, "")
+	}
+	req := httptest.NewRequest("GET", "http://test.com", nil)
+	w := httptest.NewRecorder()
+	handler(w, req)
+
+	result := helper.CheckIfMatrixIsEmpty(matrix, w)
+
+	assert.Equal(false, result, "should receive matrix 2x2 and return false")
+}
