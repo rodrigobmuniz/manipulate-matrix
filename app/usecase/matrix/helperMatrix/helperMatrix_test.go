@@ -161,3 +161,33 @@ func TestTheMatrixIsEmptyReturningFalse(t *testing.T) {
 	assert.Equal(false, result, "should return false if matrix is empty")
 	assert.Equal(false, hasError, "should not have generated an Error")
 }
+
+// ConvertMatrixToSlice test
+func TestConvertMatrixToSlice2x2(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "2"})
+	matrix = append(matrix, []string{"3", "4"})
+
+	expected := []string{"1", "2", "3", "4"}
+
+	result := helperMatrix.ConvertMatrixToSlice(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 3x3 and return a slices with all the numbers in the same order")
+}
+
+func TestConvertMatrixToSlice3x3(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"1", "2", "3"})
+	matrix = append(matrix, []string{"4", "5", "6"})
+	matrix = append(matrix, []string{"7", "8", "9"})
+
+	expected := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+	result := helperMatrix.ConvertMatrixToSlice(matrix)
+
+	assert.Equal(expected, result, "receive an matrix 3x3 and return a slices with all the numbers in the same order")
+}
