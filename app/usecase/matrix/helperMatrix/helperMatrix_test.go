@@ -13,7 +13,7 @@ func TestAllValuesAreConvertibleToBigIntReturningTrue(t *testing.T) {
 
 	var matrix [][]string
 	matrix = append(matrix, []string{"-1", "20", "10"})
-	matrix = append(matrix, []string{"5", "6", "2"})
+	matrix = append(matrix, []string{"5", "635353565475756745774567674567456745674567456745745674567456745674567456745674567", "2"})
 	matrix = append(matrix, []string{"1", "3", "2"})
 
 	expected := true
@@ -22,7 +22,7 @@ func TestAllValuesAreConvertibleToBigIntReturningTrue(t *testing.T) {
 
 	hasError := err != nil
 
-	assert.Equal(expected, result, "should take an matrix and return true if all items are convertible to int")
+	assert.Equal(expected, result, "should take an matrix and return true if all items are convertible to bigInt")
 	assert.Equal(false, hasError, "should not have generated an Error")
 }
 
@@ -30,8 +30,8 @@ func TestAllValuesAreConvertibleToBigIntReturningFalse(t *testing.T) {
 	assert := assert.New(t)
 
 	var matrix [][]string
-	matrix = append(matrix, []string{"-1", "20", "10"})
-	matrix = append(matrix, []string{"5", "test", "2"})
+	matrix = append(matrix, []string{"-1", "20", "36345634635463456345634563566568756785743565463456756764574567465745674567467"})
+	matrix = append(matrix, []string{"5", "tehgdfghdgh dfghdgfhdfghdfgh dfg hdf gh dfgh dfgst", "2"})
 	matrix = append(matrix, []string{"1", "3", "2"})
 
 	expected := false
@@ -63,7 +63,7 @@ func TestTheCheckIfMatrixIsSquare3x3(t *testing.T) {
 
 	var matrix [][]string
 	matrix = append(matrix, []string{"-1", "20", "10"})
-	matrix = append(matrix, []string{"5", "30", "2"})
+	matrix = append(matrix, []string{"5", "55358345934875938457394573945873948573894577398457398457398457983475983475937459374598347", "2"})
 	matrix = append(matrix, []string{"1", "3", "2"})
 
 	result, err := helperMatrix.TheCheckIfMatrixIsSquare(matrix)
@@ -79,7 +79,7 @@ func TestTheCheckIfMatrixIsSquare5x5(t *testing.T) {
 	var matrix [][]string
 	matrix = append(matrix, []string{"-1", "20", "10", "2", "4"})
 	matrix = append(matrix, []string{"5", "30", "2", "1", "90"})
-	matrix = append(matrix, []string{"1", "3", "2", "1", "3"})
+	matrix = append(matrix, []string{"1", "3453453948590238405928340528340583045820345046754654867757759746458820380839824", "2", "1", "3"})
 	matrix = append(matrix, []string{"5", "30", "2", "1", "90"})
 	matrix = append(matrix, []string{"1", "3", "2", "1", "3"})
 
