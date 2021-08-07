@@ -4,4 +4,4 @@
 
 3. Função multiply usando matrizes muito grande (ou com números muito grandes) não passou (big integer). - ok
 
-4. Revisar a arquitetura e considerar a criação de um arquivo para colocar os helpers. Por exemplo, as funções fazem sentido estarem onde estão? Acredito que sria bom separar o que é helper do que é manipulação da matrix, para ficar uma arquitetura mais limpa.
+4. Revisar a arquitetura e considerar a criação de um arquivo para colocar os helpers. Por exemplo, as funções fazem sentido estarem onde estão? Acredito que sria bom separar o que é helper do que é manipulação da matrix, para ficar uma arquitetura mais limpa. - ok
