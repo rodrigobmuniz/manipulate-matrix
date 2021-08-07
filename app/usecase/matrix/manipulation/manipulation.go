@@ -108,3 +108,13 @@ func TheMatrixIsSquare(matrix [][]string) (bool, error) {
 	}
 	return true, nil
 }
+
+func TheMatrixIsEmpty(matrix [][]string) (bool, error) {
+	flattedMatrix, _ := Flatten(matrix)
+
+	if flattedMatrix == "" {
+		return true, errors.New("matrix received is not square")
+	}
+
+	return false, nil
+}

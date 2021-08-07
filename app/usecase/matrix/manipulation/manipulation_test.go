@@ -381,3 +381,32 @@ func TestTheMatrixIsSquare4x2WithError(t *testing.T) {
 	assert.Equal(false, result, "should return true if matrix is square")
 	assert.Equal(true, hasError, "should have generated an Error")
 }
+
+// TestTheMatrixIsEmpty test
+func TestTheMatrixIsEmptyReturningTrue(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{""})
+
+	result, err := manipulation.TheMatrixIsEmpty(matrix)
+	hasError := err != nil
+
+	assert.Equal(true, result, "should return false if matrix is empty")
+	assert.Equal(true, hasError, "should have generated an Error")
+}
+
+func TestTheMatrixIsEmptyReturningFalse(t *testing.T) {
+	assert := assert.New(t)
+
+	var matrix [][]string
+	matrix = append(matrix, []string{"-1", "20", "10"})
+	matrix = append(matrix, []string{"5", "30", "2"})
+	matrix = append(matrix, []string{"1", "3", "2"})
+
+	result, err := manipulation.TheMatrixIsEmpty(matrix)
+	hasError := err != nil
+
+	assert.Equal(false, result, "should return false if matrix is empty")
+	assert.Equal(false, hasError, "should not have generated an Error")
+}
