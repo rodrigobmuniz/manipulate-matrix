@@ -188,8 +188,8 @@ go test -v ./...
 --- PASS: TestAllValuesAreConvertibleToNumberReturningTrue (0.00s)
 === RUN   TestAllValuesAreConvertibleToNumberReturningFalse
 --- PASS: TestAllValuesAreConvertibleToNumberReturningFalse (0.00s)
-=== RUN   TestMatrixIsSquare
---- PASS: TestMatrixIsSquare (0.00s)
+=== RUN   TestCheckIfMatrixIsSquare
+--- PASS: TestCheckIfMatrixIsSquare (0.00s)
 PASS
 ok  	manipulate-matrix/app/delivery/http	0.594s
 === RUN   TestCanarySpec
@@ -230,18 +230,18 @@ ok  	manipulate-matrix/app/delivery/http	0.594s
 --- PASS: TestAllValuesAreConvertibleToIntReturningTrue (0.00s)
 === RUN   TestAllValuesAreConvertibleToIntReturningFalse
 --- PASS: TestAllValuesAreConvertibleToIntReturningFalse (0.00s)
-=== RUN   TestTheMatrixIsSquare1x1
---- PASS: TestTheMatrixIsSquare1x1 (0.00s)
-=== RUN   TestTheMatrixIsSquare3x3
---- PASS: TestTheMatrixIsSquare3x3 (0.00s)
-=== RUN   TestTheMatrixIsSquare5x5
---- PASS: TestTheMatrixIsSquare5x5 (0.00s)
-=== RUN   TestTheMatrixIsSquare3x3WithError
---- PASS: TestTheMatrixIsSquare3x3WithError (0.00s)
-=== RUN   TestTheMatrixIsSquare1x3WithError
---- PASS: TestTheMatrixIsSquare1x3WithError (0.00s)
-=== RUN   TestTheMatrixIsSquare4x2WithError
---- PASS: TestTheMatrixIsSquare4x2WithError (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare1x1
+--- PASS: TestTheCheckIfMatrixIsSquare1x1 (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare3x3
+--- PASS: TestTheCheckIfMatrixIsSquare3x3 (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare5x5
+--- PASS: TestTheCheckIfMatrixIsSquare5x5 (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare3x3WithError
+--- PASS: TestTheCheckIfMatrixIsSquare3x3WithError (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare1x3WithError
+--- PASS: TestTheCheckIfMatrixIsSquare1x3WithError (0.00s)
+=== RUN   TestTheCheckIfMatrixIsSquare4x2WithError
+--- PASS: TestTheCheckIfMatrixIsSquare4x2WithError (0.00s)
 PASS
 ok  	manipulate-matrix/app/usecase/matrix/manipulation	0.779s
 ```

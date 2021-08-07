@@ -22,7 +22,7 @@ func processMatrixRequest(res http.ResponseWriter, req *http.Request, fn manipul
 	if helper.CheckIfMatrixIsEmpty(records, res) {
 		return
 	}
-	if !helper.MatrixIsSquare(records, res) {
+	if !helper.CheckIfMatrixIsSquare(records, res) {
 		return
 	}
 	if !helper.AllValuesAreConvertibleToNumber(records, res) {

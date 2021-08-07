@@ -99,7 +99,7 @@ func AllValuesAreConvertibleToBigInt(matrix [][]string) (bool, error) {
 	return true, nil
 }
 
-func TheMatrixIsSquare(matrix [][]string) (bool, error) {
+func TheCheckIfMatrixIsSquare(matrix [][]string) (bool, error) {
 	totalCols := len(matrix)
 	for _, row := range matrix {
 		if len(row) != totalCols {
