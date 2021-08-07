@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
-	"strconv"
 	"strings"
 )
 
@@ -45,13 +44,20 @@ func Sum(matrix [][]string) (string, error) {
 	if len(flattedMatrix) > 0 {
 		return "", errors.New("empty matrix cannot be summed")
 	}
-	total := 0
+	total := new(big.Int)
+	var convertable bool
+	total, convertable = total.SetString("0", 10)
+	if !convertable {
+		return "", errors.New("error on function Sum converting value to bitInt")
+	}
 	flattedMatrix = ConvertMatrixToSlice(matrix)
 	for _, value := range flattedMatrix {
-		valueToInt, _ := strconv.Atoi(value)
-		total += valueToInt
+		bitIntValue := new(big.Int)
+		valueToInt, _ := bitIntValue.SetString(value, 10)
+		total.Add(total, valueToInt)
 	}
-	return strconv.Itoa(total), nil
+
+	return total.String(), nil
 }
 
 // Return the product of the integers in the matrix
@@ -66,7 +72,6 @@ func Multiply(matrix [][]string) (string, error) {
 	for key, value := range flattedMatrix {
 		bitIntValue := new(big.Int)
 		valueToInt, _ := bitIntValue.SetString(value, 10)
-
 		if key == 0 {
 			total = valueToInt
 		}
@@ -86,19 +91,20 @@ func ConvertMatrixToSlice(matrix [][]string) []string {
 	return flattedMatrix
 }
 
+// Return true if all items are convertible to bitInt or return false, with error, if is not
 func AllValuesAreConvertibleToBigInt(matrix [][]string) (bool, error) {
 	matrixAsSlice := ConvertMatrixToSlice(matrix)
 	for _, item := range matrixAsSlice {
 		bitIntValue := new(big.Int)
 		if _, converted := bitIntValue.SetString(item, 10); !converted {
-			errorResponse := "not all items in the matrix are numbers"
-			var matrixWithWrongContent = errors.New(errorResponse)
+			var matrixWithWrongContent = errors.New("not all items in the matrix are numbers")
 			return false, matrixWithWrongContent
 		}
 	}
 	return true, nil
 }
 
+// Return true if the matrix is square or return false, with error, if is not
 func TheCheckIfMatrixIsSquare(matrix [][]string) (bool, error) {
 	totalCols := len(matrix)
 	for _, row := range matrix {
@@ -109,12 +115,11 @@ func TheCheckIfMatrixIsSquare(matrix [][]string) (bool, error) {
 	return true, nil
 }
 
+// Return true, with error, if matrix is empty or return false if is not empty
 func TheMatrixIsEmpty(matrix [][]string) (bool, error) {
 	flattedMatrix, _ := Flatten(matrix)
-
 	if flattedMatrix == "" {
 		return true, errors.New("sent matrix is empty")
 	}
-
 	return false, nil
 }
