@@ -30,6 +30,16 @@ go build -o manipulate-matrix main.go
     ./manipulate-matrix
     ```
 
+    If you want to run using Go, follow the installation instructions on the link:
+
+    https://golang.org/doc/install
+
+    Once installed, in the project's root folder, run the command:
+
+    ```
+    go run main.go
+    ```
+
     ### Windows
 
     Double click on the file: `manipulate-matrix.exe`
@@ -39,6 +49,16 @@ go build -o manipulate-matrix main.go
 
     ```
     ./manipulate-matrix.exe
+    ```
+
+    If you want to run using Go, follow the installation instructions on the link:
+
+    https://golang.org/doc/install
+
+    Once installed, in the project's root folder, run the command:
+
+    ```
+    go run main.go
     ```
 
     ### Docker
